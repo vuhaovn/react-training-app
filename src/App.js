@@ -65,13 +65,12 @@ function App() {
       },
       body: JSON.stringify(updateTask)
     })
-
     const data = await res.json()
     setTasks(tasks.map((task) => task.id === id ? { ...task, reminder: data.reminder} : task ))
   }
 
-  const onSearch = async (value) => {
-    const res = await fetch(`http://localhost:4001/tasks?text_like=${value}`, {
+  const onSearch = async (text) => {
+    const res = await fetch(`http://localhost:4001/tasks?text_like=${text}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
