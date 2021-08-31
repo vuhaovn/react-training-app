@@ -70,8 +70,16 @@ function App() {
     setTasks(tasks.map((task) => task.id === id ? { ...task, reminder: data.reminder} : task ))
   }
 
-  const onSearch = async () => {
+  const onSearch = async (value) => {
+    const res = await fetch(`http://localhost:4001/tasks?text_like=${value}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
 
+    const data = await res.json()
+    setTasks([...tasks, data])
   }
 
   const onShow = () => {
