@@ -16,13 +16,13 @@ function App() {
 
   useEffect(() => {
     const getTasks = async () => {
-      const tasksApi = await fetchTask()
+      const tasksApi = await fetchTasks()
       setTasks(tasksApi)
     }
     getTasks()
   }, [])
 
-  const fetchTask = async () => {
+  const fetchTasks = async () => {
     const res = await fetch('http://localhost:4001/tasks')
     const data = await res.json()
     return data
@@ -70,7 +70,7 @@ function App() {
   }
 
   const onSearch = async (text) => {
-    const res = await fetch(`http://localhost:4001/tasks?text_like=${text}`, {
+    const res = await fetch(`http://localhost:4001/tasks?q=${text}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -78,7 +78,7 @@ function App() {
     })
 
     const data = await res.json()
-    setTasks([...tasks, data])
+    setTasks(data)
   }
 
   const onShow = () => {
