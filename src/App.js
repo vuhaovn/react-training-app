@@ -23,19 +23,19 @@ function App() {
   }, [])
 
   const fetchTasks = async () => {
-    const res = await fetch('http://localhost:4001/tasks')
+    const res = await fetch('https://vuhaovn-tasks.herokuapp.com/tasks')
     const data = await res.json()
     return data
   }
 
   const fetchTaskById = async (id) => {
-    const res = await fetch(`http://localhost:4001/tasks/${id}`)
+    const res = await fetch(`https://vuhaovn-tasks.herokuapp.com/tasks/${id}`)
     const data = await res.json()
     return data
   }
 
   const addTask = async (task) => {
-    const res = await fetch('http://localhost:4001/tasks', {
+    const res = await fetch('https://vuhaovn-tasks.herokuapp.com/tasks', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ function App() {
   }
 
   const deleteTask = async (id) => {
-    await fetch(`http://localhost:4001/tasks/${id}`,
+    await fetch(`https://vuhaovn-tasks.herokuapp.com/tasks/${id}`,
     {
       method: 'DELETE'
     })
@@ -58,7 +58,7 @@ function App() {
   const toggleTask = async (id) => {
     const taskFetch = await fetchTaskById(id)
     const updateTask = {...taskFetch, reminder: !taskFetch.reminder}
-    const res = await fetch(`http://localhost:4001/tasks/${id}`, {
+    const res = await fetch(`https://vuhaovn-tasks.herokuapp.com/tasks/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -70,7 +70,7 @@ function App() {
   }
 
   const onSearch = async (text) => {
-    const res = await fetch(`http://localhost:4001/tasks?q=${text}`, {
+    const res = await fetch(`https://vuhaovn-tasks.herokuapp.com/tasks?q=${text}`, {
       method: 'GET',
       // headers: {
       //   'Content-Type': 'application/json'
@@ -90,8 +90,8 @@ function App() {
     <Router>
       <div className='container'>
         <Header onShow={onShow} show={show} />
-        <Route path='/about' component={About} />
-        <Route path='/' exact render={(props) => (
+        <Route path='./about' component={About} />
+        <Route path='./' exact render={(props) => (
           <>
             {show && <AddTask onAdd={addTask} />}
             <Search onSearch={onSearch}/>
