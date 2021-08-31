@@ -72,9 +72,10 @@ function App() {
   const onSearch = async (text) => {
     const res = await fetch(`http://localhost:4001/tasks?q=${text}`, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      // headers: {
+      //   'Content-Type': 'application/json'
+      // },
+      // body: JSON.stringify(text)
     })
 
     const data = await res.json()
