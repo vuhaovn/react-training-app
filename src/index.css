@@ -10,6 +10,30 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+nav ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+nav ul li {
+  width: 50%;
+}
+
+nav ul li a {
+  display: block;
+  padding: 10px 0;
+  text-align: center;
+  color: #fff;
+  text-decoration: none;
+  background-color: cadetblue;
+}
+
+nav ul li a.active {
+  background-color: darkcyan;
+}
+
 .container {
   max-width: 500px;
   margin: 30px auto;

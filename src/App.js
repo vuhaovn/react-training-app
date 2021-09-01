@@ -7,7 +7,9 @@ import Search from './components/Search'
 import { useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
-  Route
+  Switch,
+  Route,
+  NavLink
 } from "react-router-dom";
 
 function App() {
@@ -23,13 +25,17 @@ function App() {
   }, [])
 
   const fetchTasks = async () => {
-    const res = await fetch('https://vuhaovn-tasks.herokuapp.com/tasks')
+    const res = await fetch('https://vuhaovn-tasks.herokuapp.com/tasks', {
+      method: 'GET'
+    })
     const data = await res.json()
     return data
   }
 
   const fetchTaskById = async (id) => {
-    const res = await fetch(`https://vuhaovn-tasks.herokuapp.com/tasks/${id}`)
+    const res = await fetch(`https://vuhaovn-tasks.herokuapp.com/tasks/${id}`, {
+      method: 'GET'
+    })
     const data = await res.json()
     return data
   }
@@ -71,11 +77,7 @@ function App() {
 
   const onSearch = async (text) => {
     const res = await fetch(`https://vuhaovn-tasks.herokuapp.com/tasks?q=${text}`, {
-      method: 'GET',
-      // headers: {
-      //   'Content-Type': 'application/json'
-      // },
-      // body: JSON.stringify(text)
+      method: 'GET'
     })
 
     const data = await res.json()
@@ -88,11 +90,20 @@ function App() {
 
   return (
     <Router>
-      <div className='container'>
-        <Header onShow={onShow} show={show} />
-        <Route path='./about' component={About} />
-        <Route path='./' exact render={(props) => (
-          <>
+      <Switch>
+        <div className='container'>
+          <nav>
+            <ul>
+              <li>
+                <NavLink exact to='/' activeClassName='active'>Home</NavLink>
+              </li>
+              <li>
+                <NavLink exact to='/about' activeClassName='active'>About</NavLink>
+              </li>
+            </ul>
+          </nav>
+          <Route exact path='/'>
+            <Header onShow={onShow} show={show} />
             {show && <AddTask onAdd={addTask} />}
             <Search onSearch={onSearch}/>
             {tasks.length > 0 ?
@@ -101,10 +112,13 @@ function App() {
             onDelete={deleteTask}
             onToggle={toggleTask}
             /> : <p>No task to show</p>}
-          </>
-        )} />
-        <Footer />
-      </div>
+          </Route>
+          <Route exact path='/about'>
+            <About />
+          </Route>
+          <Footer />
+        </div>
+      </Switch>
     </Router>
   );
 }

@@ -18,7 +18,7 @@ const Search = ({onSearch}) => {
       <div className='form-control'>
         <h2>Search</h2>
         <input type='text' onChange={onChange} value={text} placeholder='Task name' />
-        <input type='submit' value='Search' className='btn' style={{backgroundColor:'blue'}} />
+        <input type='submit' value='Search' className='btn' style={{backgroundColor:'royalblue'}} />
       </div>
     </form>
   )
