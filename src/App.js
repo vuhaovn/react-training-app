@@ -7,7 +7,6 @@ import Search from './components/Search'
 import { useEffect, useState } from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
   NavLink
 } from "react-router-dom";
@@ -25,7 +24,7 @@ function App() {
   }, [])
 
   const fetchTasks = async () => {
-    const res = await fetch('https://vuhaovn-tasks.herokuapp.com/tasks', {
+    const res = await fetch(`${process.env.REACT_APP_API}`, {
       method: 'GET'
     })
     const data = await res.json()
@@ -33,7 +32,7 @@ function App() {
   }
 
   const fetchTaskById = async (id) => {
-    const res = await fetch(`https://vuhaovn-tasks.herokuapp.com/tasks/${id}`, {
+    const res = await fetch(`${process.env.REACT_APP_API}/${id}`, {
       method: 'GET'
     })
     const data = await res.json()
@@ -41,7 +40,7 @@ function App() {
   }
 
   const addTask = async (task) => {
-    const res = await fetch('https://vuhaovn-tasks.herokuapp.com/tasks', {
+    const res = await fetch(`${process.env.REACT_APP_API}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -54,7 +53,7 @@ function App() {
   }
 
   const deleteTask = async (id) => {
-    await fetch(`https://vuhaovn-tasks.herokuapp.com/tasks/${id}`,
+    await fetch(`${process.env.REACT_APP_API}/${id}`,
     {
       method: 'DELETE'
     })
@@ -64,7 +63,7 @@ function App() {
   const toggleTask = async (id) => {
     const taskFetch = await fetchTaskById(id)
     const updateTask = {...taskFetch, reminder: !taskFetch.reminder}
-    const res = await fetch(`https://vuhaovn-tasks.herokuapp.com/tasks/${id}`, {
+    const res = await fetch(`${process.env.REACT_APP_API}/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -76,7 +75,7 @@ function App() {
   }
 
   const onSearch = async (text) => {
-    const res = await fetch(`https://vuhaovn-tasks.herokuapp.com/tasks?q=${text}`, {
+    const res = await fetch(`${process.env.REACT_APP_API}?q=${text}`, {
       method: 'GET'
     })
 
