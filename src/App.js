@@ -95,14 +95,14 @@ function App() {
           <nav>
             <ul>
               <li>
-                <NavLink to='https://vuhaovn.github.io/react-training-app/' activeClassName='active'>Home</NavLink>
+                <NavLink to='/' activeClassName='active'>Home</NavLink>
               </li>
               <li>
-                <NavLink to='https://vuhaovn.github.io/react-training-app/about' activeClassName='active'>About</NavLink>
+                <NavLink to='/about' activeClassName='active'>About</NavLink>
               </li>
             </ul>
           </nav>
-          <Route path='https://vuhaovn.github.io/react-training-app/'>
+          <Route exact path='/'>
             <Header onShow={onShow} show={show} />
             {show && <AddTask onAdd={addTask} />}
             <Search onSearch={onSearch}/>
@@ -113,7 +113,7 @@ function App() {
             onToggle={toggleTask}
             /> : <p>No task to show</p>}
           </Route>
-          <Route path='https://vuhaovn.github.io/react-training-app/about'>
+          <Route exact path='/about'>
             <About />
           </Route>
           <Footer />
