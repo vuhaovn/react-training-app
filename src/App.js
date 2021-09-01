@@ -90,19 +90,18 @@ function App() {
 
   return (
     <Router>
-      <Switch>
         <div className='container'>
           <nav>
             <ul>
               <li>
-                <NavLink exact to='react-training-app/' activeClassName='active'>Home</NavLink>
+                <NavLink exact to='/react-training-app/' activeClassName='active'>Home</NavLink>
               </li>
               <li>
-                <NavLink exact to='react-training-app/about' activeClassName='active'>About</NavLink>
+                <NavLink exact to='/react-training-app/about' activeClassName='active'>About</NavLink>
               </li>
             </ul>
           </nav>
-          <Route exact path='react-training-app/'>
+          <Route exact path='/react-training-app/'>
             <Header onShow={onShow} show={show} />
             {show && <AddTask onAdd={addTask} />}
             <Search onSearch={onSearch}/>
@@ -113,12 +112,11 @@ function App() {
             onToggle={toggleTask}
             /> : <p>No task to show</p>}
           </Route>
-          <Route exact path='react-training-app/about'>
+          <Route exact path='/react-training-app/about'>
             <About />
           </Route>
           <Footer />
         </div>
-      </Switch>
     </Router>
   );
 }

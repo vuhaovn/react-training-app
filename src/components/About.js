@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const About = () => {
   return (
     <div>
       <h3>Version 1.0</h3>
-      <Link to='/'>Go back</Link>
+      <NavLink exact to='/react-training-app/'>Go back</NavLink>
     </div>
   )
 }
