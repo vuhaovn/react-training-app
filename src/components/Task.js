@@ -9,7 +9,7 @@ const Task = ({task, deleteTask, toggleTask}) => {
           <button className='btn' style={{backgroundColor: 'gold'}} onClick={() => toggleTask(task.id)}>
             {task.reminder ? <AiOutlineCheckSquare /> : <AiOutlineBorder />}
           </button>
-          <button className='btn' style={{backgroundColor: 'tomato'}} onClick={() => deleteTask(task.id)}>
+          <button className='btn' style={{backgroundColor: 'tomato'}} onClick={() => {if (window.confirm('Are you sure you wish to delete this item?')) deleteTask(task.id)}}>
             <AiFillDelete />
           </button>
         </div>
